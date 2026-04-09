@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Мини-анкета</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/api/questions')
+                .then(response => response.json())
+                .then(questions => {
+                    const form = document.getElementById('questionnaire-form');
+                    questions.forEach((q, idx) => {
+                        const div = document.createElement('div');
+                        div.innerHTML = `<label>${q.text}<br><input type='text' name='answer${idx}' required></label><br>`;
+                        form.insertBefore(div, form.lastElementChild);
+                    });
+                });
+
+            document.getElementById('questionnaire-form').onsubmit = function (e) {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const answers = Array.from(document.querySelectorAll('input[name^="answer"]')).map(i => i.value);
+                fetch('/api/answers', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, answers })
+                }).then(() => {
+                    document.getElementById('questionnaire-form').style.display = 'none';
+                    document.getElementById('thanks').style.display = 'block';
+                });
+            };
+        });
+    </script>
+</head>
+<body>
+<h2>Мини-анкета</h2>
+<form id="questionnaire-form">
+    <div>
+        <label>Ваш никнейм:<br><input type="text" id="username" name="username" required></label><br>
+    </div>
+    <button type="submit">Отправить</button>
+</form>
+<div id="thanks" style="display:none;">
+    <h3>Спасибо!</h3>
+</div>
+</body>
+</html>

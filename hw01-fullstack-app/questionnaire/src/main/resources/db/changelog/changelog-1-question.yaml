@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: copilot
+      changes:
+        - createTable:
+            tableName: question
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: text
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: text
+                  value: 'Ваше имя?'
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: text
+                  value: 'Ваш возраст?'
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: text
+                  value: 'Ваша профессия?'
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: text
+                  value: 'Ваш город?'
+        - insert:
+            tableName: question
+            columns:
+              - column:
+                  name: text
+                  value: 'Ваше хобби?'

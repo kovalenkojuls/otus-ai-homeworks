@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  questionnaire:
+    build: ./questionnaire
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/questionnaire
+      - SPRING_DATASOURCE_USERNAME=questionnaire
+      - SPRING_DATASOURCE_PASSWORD=questionnaire
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_DB: questionnaire
+      POSTGRES_USER: questionnaire
+      POSTGRES_PASSWORD: questionnaire
+    ports:
+      - "5432:5432"

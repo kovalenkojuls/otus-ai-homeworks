@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: copilot
+      changes:
+        - createTable:
+            tableName: answer
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: question_id
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: answer_text
+                  type: TEXT
+                  constraints:
+                    nullable: false
