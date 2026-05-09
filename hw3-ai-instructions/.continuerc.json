@@ -1,0 +1,29 @@
+{
+  "model": "ollama/qwen3-coder:next",
+  "temperature": 0.2,
+  "systemMessage": "Ты AI-ассистент, работающий с проектом CookHub. Перед любыми изменениями изучи docs/CONTEXT.md и docs/ARCHITECTURE.md. Строго соблюдай .continue/rules.md. Твои ответы должны содержать: 1) план действий, 2) изменения в коде, 3) пояснение решений, 4) шаги проверки.",
+  "rules": [
+    {
+      "name": "java-spring-dev",
+      "hub": "saravanan-paramasivam/java-spring-dev"
+    },
+    {
+      "name": "project-rules",
+      "file": ".continue/rules.md"
+    }
+  ],
+  "context": [
+    {
+      "name": "project-context",
+      "file": "docs/ai/CONTEXT.md"
+    },
+    {
+      "name": "architecture",
+      "file": "docs/ai/ARCHITECTURE.md"
+    },
+    {
+      "name": "typical-tasks",
+      "file": "docs/ai/TASKS.md"
+    }
+  ]
+}
