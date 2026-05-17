@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: pet-shelter
+  datasource:
+    url: jdbc:postgresql://postgres:5432/petshelter
+    username: petshelter_user
+    password: petshelter_pass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/v1/create-pets-table.yaml
+server:
+  port: 8080
+logging:
+  level:
+    root: INFO
+    com.example.petshelter: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
